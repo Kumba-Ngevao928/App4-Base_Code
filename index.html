@@ -7,8 +7,7 @@ THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
  
 Authors in chronological order of contribution:
 Tim Riedel
-Author 2
- 
+Kumba Ngevao 
 Further Information:
 http://diystream.cns.utexas.edu/
 
@@ -17,11 +16,11 @@ Timothy Riedel
 triedel@utexas.edu
  
 Brief Description of Goal of Code:
-blah, blah, blah,
- 
-Known Issues:
-blah, blah, blah, blah
-Ignore this error message if you see it using the javaScript console: Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'interest-cohort'.
+The goal for the code is to accurately differentiate between a user's symptoms, to determine whether they are down with the flu or COVID-19. 
+This is crucial as these illnesses often exhibit similar symptoms, making them prone to misdiagnosis in the absence of sample testing.
+	
+Known Issues: CHANGEE
+None right now
 
 References:
 https://www.w3schools.com/w3css/default.asp
@@ -29,21 +28,43 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 -->
 	
 <head> 
+<!-- Metadata section -->
 	<title>Hello World</title>  
 ]	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<link rel="stylesheet" href="w3.css">
 	<link rel="stylesheet" href="w3-colors-flat.css">
-</head> 
+</head>
 
 <script>
-
-	//YOUR JAVASCRIPT GOES HERE
-
+// This code lets me know when last the file was modified. It lets me know if im looking at the new version or if Github is delayed.
+	var docMod = document.lastModified;
+	alert("This file last modified " + docMod);
+	console.log("This file last modified " + docMod);
+// Labeled variables and functions to be used throughout the code
+        var covid_count = 0;
+        var flu_count = 0;
+// Function to increment covid-19 count and display the alert
+        function covidAdd(){
+            covid_count = covid_count + 1;
+		alert(covid_count);
+        }
+// Function to increment cold count
+        function fluAdd(){
+            flu_count = flu_count + 1;
+        }
+// Function to calculate percentage probability of flu or covid-19
+	function percentage(){
+// Calculating the percentahe based on the counts
+            covidp = (covid_count/4)*100
+            flup = (flu_count/4)*100
+// Code to display the results
+        var results = document.getElementById("results")
+            results.innerHTML = "probability it is covid =" + covidp + "%" + "<br> probability it is cold=" + flup + "%"
+        }
 </script>	
-
-
-<!-- THIS STYLE CODE HELPS MAKE YOUR APP LOOK GOOD. PROBABLY DONT MESS WITH IT -->
+	
+<!-- THIS CSS STYLE CODE MAKES THE APP LOOK GOOD/TELLS IT HOW TO LOOK -->
 <style>	
 .body {
      margin: 0em;
@@ -67,9 +88,83 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 </style>
 
 <body>
+	<!-- Content section-->
+	<div id="header" class="w3-container w3-flat-carrot">
+		<!-- Header-->	
+		<h1>The Flu or COVID-19?</h1>
+	</div>
 	
-	<!-- HERE IS WHERE ALL OF YOUR HTML PAGES GO -->
-	Kumba Ngevao
+	<div id="content" class="w3-container">
+	<!-- Question that appears on page, main content-->	
+	<p>Are you feeling like you might have the flu but wonder if it is COVID-19. Answer a few short questions to find out!</p>
+	
+	<a href="#one" class="w3-btn w3-grey w3-round"> Get Started </a>
+	<!-- Information/discalimer about the code-->
+	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at 		Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code 			does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
+ 	
+	<p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
+	<!-- Pages with the questions start below-->
+	<!-- page one of the app, with the first set of questions-->
+	<div class="page" id="one">	
+		<div id="header" class="w3-container w3-flat-carrot">
+			<h1>Question 1</h1>
+		</div>
+    		<div id="content" class="w3-container">
+       		 	<p>Do you have a sore throat?</p>   
+	 		<a href="#two" onclick="covidAdd();" class="w3-btn w3-black"> Yes</a>
+         		<a href="#two" onclick="fluAdd();" class="w3-btn w3-black">No</a>   
+    		</div><!-- These HTML codes create the yes and no buttons for the user to imput their answers-->
+	</div>
+	<!-- Page two of the app, with the second set of questions-->
+	<div class="page" id="two">
+		<div class="w3-container w3-flat-carrot">
+			<h1>Question 2</h1>
+		</div>
+		<div id="content2" class="w3-container">
+			<p>Are you having difficulty breathing?</p>
+		 	<a href="#three" onclick="covidAdd();" class="w3-btn w3-black"> Yes</a>
+        	 	<a href="#three" onclick="fluAdd();" class="w3-btn w3-black">No</a>
+		</div><!--These HTML codes create the yes and no buttons for the user to imput their answers, Deleted the commands for previous page and next page options as after question one the app didnt work correctly-->	
+	</div>	
+	<!-- page three of the app, with the third set of questions-->
+	<div class="page" id="three">	
+		<div class="w3-container w3-flat-carrot">
+			<h1>Question 3</h1>
+		</div>
+		<div id="content3" class="w3-container">
+			<p>Do you have a fever?</p>
+		 	<a href="#four" onclick="fluAdd();" class="w3-btn w3-black"> Yes</a>
+                 	<a href="#four" onclick="covidAdd();" class="w3-btn w3-black">No</a>
+		</div><!--These HTML codes create the yes and no buttons for the user to imput their answers, Deleted the commands for previous page and next page options as after question one the app didnt work correctly-->	
+	</div>
+	<!-- page four of the app, with the last set of questions-->
+	<div class="page" id="four">
+		<div class="w3-container w3-flat-carrot">
+			<h1>Question 4</h1>
+		</div>
+		<div id="content4" class="w3-container">
+			<p>Do you have boy aches?</p>
+			<a href="#results-page" onclick="fluAdd();" class="w3-btn w3-black"> Yes</a>
+			<a href="#results-page" onclick="covidAdd();" class="w3-btn w3-black">No</a>
+	  	</div><!--These HTML codes create the yes and no buttons for the user to imput their answers, Deleted the commands for previous page and next page options as after question one the app didnt work correctly-->
+	</div>
+	<!-- Results page-->	
+	<div class="page" id="results-page">
+	<!--Container for the header of the results page-->
+    		<div class="w3-container w3-flat-carrot">
+        		<h1>Results</h1>
+    		</div>	
+    		<div id="content5" class="w3-container">
+	<!-- Button for triggering the calculation of probabilities, linked to the JavaScript function percentage()-->
+		<button class="w3-button w3-black" onclick="percentage()">Calculate</button>	    
+       	<!-- Paragraph element to display the calculated results-->
+		<p id="results"></p> 
+    		</div>
+	</div>
+<footer class="w3-bottom w3-container w3-flat-carrot">
+<!-- container class for the orange footer of the APP-->	
+	<p>DIY!</p>
+</footer>
 	
 </body>
 </html>
